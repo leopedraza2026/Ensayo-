@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mi Restaurante — Pedido en línea</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <h1>Mi Restaurante</h1>
+      <p class="tagline">Comida rica, rápida y casera</p>
+    </div>
+    <div class="actions">
+      <button id="toggle-admin" class="btn small">Mostrar/ocultar Admin</button>
+      <button id="open-cart" class="btn primary">Ver carrito (<span id="cart-count">0</span>)</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <input id="search" type="search" placeholder="Buscar platos..." aria-label="Buscar platos" />
+      <select id="category-filter" aria-label="Filtrar por categoría">
+        <option value="all">Todas las categorías</option>
+      </select>
+      <select id="sort" aria-label="Ordenar">
+        <option value="default">Orden por defecto</option>
+        <option value="price-asc">Precio: menor a mayor</option>
+        <option value="price-desc">Precio: mayor a menor</option>
+      </select>
+    </section>
+
+    <section id="menu" class="menu-grid" aria-live="polite">
+      <!-- Platos renderizados por JS -->
+    </section>
+
+    <aside id="cart-panel" class="cart-panel" aria-hidden="true">
+      <div class="cart-header">
+        <h2>Tu pedido</h2>
+        <button id="close-cart" class="btn small">Cerrar</button>
+      </div>
+
+      <div id="cart-items" class="cart-items">
+        <!-- items -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="totals">
+          <span>Subtotal:</span>
+          <strong id="cart-subtotal">$0.00</strong>
+        </div>
+
+        <form id="checkout-form" class="checkout-form" aria-label="Formulario de pedido">
+          <label>
+            Nombre
+            <input type="text" id="customer-name" required placeholder="Tu nombre">
+          </label>
+          <label>
+            Teléfono
+            <input type="tel" id="customer-phone" required placeholder="Ej: +34 600 000 000">
+          </label>
+          <label>
+            Dirección
+            <input type="text" id="customer-address" required placeholder="Calle, número, ciudad">
+          </label>
+          <button type="submit" class="btn primary full">Realizar pedido</button>
+        </form>
+
+        <div id="order-message" class="order-message" role="status" aria-live="polite"></div>
+      </div>
+    </aside>
+
+    <section id="admin" class="admin-panel hidden" aria-hidden="true">
+      <h2>Admin — Añadir plato</h2>
+      <form id="add-dish-form" class="admin-form">
+        <label>Nombre<input id="dish-name" required></label>
+        <label>Descripción<input id="dish-desc"></label>
+        <label>Precio<input id="dish-price" type="number" step="0.01" required></label>
+        <label>Categoría<input id="dish-category" value="Principal"></label>
+        <label>Emoji (opcional)<input id="dish-emoji" placeholder="🍔"></label>
+        <div class="admin-actions">
+          <button type="submit" class="btn">Añadir</button>
+          <button id="reset-sample" type="button" class="btn small">Restablecer menú</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Mi Restaurante — Demo</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
